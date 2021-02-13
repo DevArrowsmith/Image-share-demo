@@ -2,6 +2,26 @@ const AWS = require('aws-sdk');
 
 const s3 = new AWS.S3();
 
+const uploadFile = (file) => {
+  new Promise((resolve, reject) => {
+    const fileKey = Date.now().toString();
+
+    const params = {
+      Body: file.buffer,
+      Bucket: process.env.BUCKET_NAME,
+      key: fileKey,
+    }
+
+    s3.putObject(params, (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(`${process.env.BUCKET_URL}/${fileKey}`)
+      }
+    })
+  })
+}
+
 const {
     createItem,
     getAllItems,
@@ -11,7 +31,14 @@ const {
   } = require('./helpers');
 
 exports.create = (req, res) => {
-    createItem(res, 'posts', req.body);
+  uploadFile(req.file)
+    .then((imageUrl) => {
+      req.body.imageUrl = imageUrl;
+      createItem(res, 'posts', req.body);
+    })
+    .catch(error => {
+      res.status(500).json({ error: error })
+    })
 }
 
 exports.readAll = (req, res) => {
