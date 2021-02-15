@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Admin</title>
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -21,21 +22,27 @@
                 <label for="ffile">File:</label>
                 <input type="file" name="file" id="ffile">
             </div> -->
-
-            <input type="file" class="filepond" id="ffile">
-            <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
-            <script>
-              FilePond.parse(document.body);
-            </script>
+            <div>
+              <label for="ffile">File:</label>
+              <input type="file" class="filepond" name="file" id="ffile">
+              <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+              <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+              <script>
+                FilePond.registerPlugin(
+                  FilePondPluginImagePreview
+                );
+                FilePond.parse(document.body);
+              </script>
+            </div>
 
             <div class="field">
                 <label for="fcomment">Comment:</label>
                 <textarea type="text" id="fcomment" name="comment" rows="5" cols="50"></textarea>
             </div>
 
-            <di>
+            <div>
                 <input type="submit" value="Submit">
-            </di>
+            </div>
         </form>
     </main>
     <script src="js/submit-form.js"></script>
