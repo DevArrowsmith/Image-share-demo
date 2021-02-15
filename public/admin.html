@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Admin</title>
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -16,10 +17,16 @@
                 <input type="text" id="ftitle" name="title" />
             </div>
 
-            <div>
+            <!-- <div>
                 <label for="ffile">File:</label>
                 <input type="file" name="file" id="ffile">
-            </div>
+            </div> -->
+
+            <input type="file" class="filepond" id="ffile">
+            <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+            <script>
+              FilePond.parse(document.body);
+            </script>
 
             <div class="field">
                 <label for="fcomment">Comment:</label>
