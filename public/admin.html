@@ -18,13 +18,10 @@
                 <input type="text" id="ftitle" name="title" />
             </div>
 
-            <!-- <div>
-                <label for="ffile">File:</label>
-                <input type="file" name="file" id="ffile">
-            </div> -->
+
             <div>
               <label for="ffile">File:</label>
-              <input type="file">
+              <input type="file" id="ffile">
             </div>
 
             <div class="field">
@@ -37,7 +34,6 @@
             </div>
         </form>
     </main>
-    <script src="js/submit-form.js"></script>
 </body>
 
 <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
@@ -52,6 +48,9 @@
 
   const pond = FilePond.create(inputElement);
 
+
 </script>
+
+<script src="js/submit-form.js"></script>
 
 </html>
